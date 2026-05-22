@@ -1,0 +1,3442 @@
+ <!DOCTYPE html>
+<html>
+<head>
+  <title> Cabetican ES | Dashboard </title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="script.js" defer></script>
+</head>
+<body>
+    <div class="layout">
+        <aside class="sidebar">
+            <div class="logo">
+                <img src="logo.png">
+                <h4 id="sidebarSchoolName"> CABETICAN <br> ELEMENTARY SCHOOL </h4>
+            </div>
+            <nav>
+                <a class="active" onclick="setActive(this)" data-page="dashboardPage">
+                    <i class="fas fa-home"></i> <span> Dashboard </span>
+                </a>
+                <hr class="divider">
+                <h5> DATA MANAGEMENT: </h5>
+                <a onclick="setActive(this)" data-page="page-enrollment">
+                    <i class="fas fa-users"></i> <span> Enrollment </span>
+                </a>
+                <a onclick="setActive(this)" data-page="page-teachers">
+                    <i class="fas fa-user"></i> <span> Teachers </span>
+                </a>
+                <a onclick="setActive(this)" data-page="page-facilities">
+                    <i class="fas fa-building"></i> <span> Facilities </span>
+                </a>
+                <hr class="divider">
+                <h5> ANALYTICS: </h5>
+                 <a onclick="setActive(this)" data-page="page-overview">
+                    <i class="fas fa-chart-column"></i> <span> Data Overview </span>
+                </a>
+                <a onclick="setActive(this)" data-page="page-issues">
+                    <i class="fas fa-search"></i> <span> Key Issues & Causes </span>
+                </a>
+                <a onclick="setActive(this)" data-page="page-forecast">
+                    <i class="fas fa-chart-line"></i> <span> Trends & Forecast </span>
+                </a>
+                <a onclick="setActive(this)" data-page="page-recommendation">
+                    <i class="fas fa-bullseye"></i> <span> Recommendation </span>
+                </a>
+                <hr class="divider">
+                <h5> OTHERS: </h5>
+                <a onclick="setActive(this)" data-page="page-reports">
+                    <i class="fas fa-file-alt"></i> <span> Reports </span>
+                </a>
+    
+     <a onclick="setActive(this)" data-page="page-settings">
+    <i class="fas fa-cog"></i>
+    <span> Settings </span>
+</a>
+
+        <div class="logout-container">
+
+    <a onclick="logout()" class="logout-btn">
+        <i class="fas fa-right-from-bracket"></i>
+        <span>Log Out</span>
+    </a>
+
+</div>
+            </nav>
+    
+        </aside>
+        <div class="main">
+          <!-- TOP MENU BAR -->
+
+
+
+
+
+            <!-- TOPBAR -->
+
+  <!-- DASHBOARD PAGE -->
+    <div id="dashboardPage" class="page">
+
+      <!-- MENU BAR -->
+
+<div class="menu-bar">
+
+    <div class="menu-left">
+
+        <button class="menu-toggle" onclick="toggleSidebar()">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <h2>Dashboard Panel</h2>
+
+    </div>
+
+    <div class="menu-right">
+
+        <div class="menu-profile">
+            <img src="logo.png">
+        </div>
+
+    </div>
+
+</div>
+    <div class="topbar">
+
+
+
+        <div>
+
+            <h1>
+                School Performance Dashboard
+            </h1>
+
+            <p id="schoolYearTitle">
+                School Year 2025-2026
+            </p>
+
+        </div>
+
+        <div class="dashboardYearSelect">
+
+            <i class="fa-solid fa-calendar"></i>
+
+            <select id="yearSelect">
+
+                <option value="2021-2022">SY 2021-2022</option>
+                <option value="2022-2023">SY 2022-2023</option>
+                <option value="2023-2024">SY 2023-2024</option>
+                <option value="2024-2025">SY 2024-2025</option>
+                <option value="2025-2026" selected>SY 2025-2026</option>
+
+            </select>
+
+        </div>
+
+    </div>
+
+    <!-- KPI -->
+
+    <div class="section-title">
+
+        <h2>KPI SUMMARY</h2>
+
+        <p>
+            Overview of key indicators for selected school year
+        </p>
+
+    </div>
+
+    <div class="cards">
+
+        <!-- ENROLLMENT -->
+
+        <div class="card">
+
+            <div class="icon blue">
+                <i class="fa-solid fa-users"></i>
+            </div>
+
+            <h3>TOTAL ENROLLMENT</h3>
+
+            <div class="number" style="color:#0d6efd;" id="dashboard-totalEnrollment">
+                294
+            </div>
+
+            <small id="dashboard-year1">
+                S.Y 2025-2026
+            </small>
+
+            <div class="label" id="enrollmentChange">
+                <i class="fa-solid fa-arrow-right"></i>
+                Change from Previous Year:
+                <span class="red-text">-6.37%</span>
+
+                <br>
+
+                <i>(vs S.Y 2024-2025)</i>
+            </div>
+
+        </div>
+
+        <!-- PEAK -->
+
+        <div class="card">
+
+            <div class="icon green">
+                <i class="fa-solid fa-chart-line"></i>
+            </div>
+
+            <h3>PEAK ENROLLMENT (5-YEAR)</h3>
+
+            <div class="number green-text">
+                314
+            </div>
+
+            <small>
+                S.Y 2024-2025
+            </small>
+
+            <div class="label">
+                5-Year Range: 258 - 314
+            </div>
+
+        </div>
+
+        <!-- REPEATERS -->
+
+        <div class="card">
+
+            <div class="icon orange">
+                <i class="fa-solid fa-rotate"></i>
+            </div>
+
+            <h3>REPEATERS</h3>
+
+            <div class="number orange-text" id="dashboard-repeaters">
+                4
+            </div>
+
+            <small id="dashboard-year2">
+                S.Y 2025-2026
+            </small>
+
+            <div class="label" id="repeatersChange">
+
+                <i class="fa-solid fa-arrow-right"></i>
+                Change from Previous Year:
+                <span class="orange-text">1.36%</span>
+
+                <br>
+
+                <i>(from 3 to 4)</i>
+
+            </div>
+
+        </div>
+
+        <!-- DROPOUTS -->
+
+        <div class="card">
+
+            <div class="icon red">
+                <i class="fa-solid fa-circle-xmark"></i>
+            </div>
+
+            <h3>DROPOUTS</h3>
+
+            <div class="number red-text" id="dashboard-dropouts">
+                0
+            </div>
+
+            <small id="dashboard-year3">
+                S.Y 2025-2026
+            </small>
+
+            <div class="label green-text" id="dropoutsChange">
+
+                <i class="fa-solid fa-arrow-right"></i>
+                Change from Previous Year:
+                0%
+
+            </div>
+
+        </div>
+
+        <!-- CLASSROOMS -->
+
+        <div class="card">
+
+            <div class="icon purple">
+                <i class="fa-solid fa-school"></i>
+            </div>
+
+            <h3>FUNCTIONAL CLASSROOMS</h3>
+
+            <div class="number" style="color:#9333ea;" id="dashboard-classrooms">
+                11
+            </div>
+
+            <small id="dashboard-year4">
+                S.Y 2025-2026
+            </small>
+
+            <div class="label" id="classroomsChange">
+
+                <i class="fa-solid fa-arrow-right"></i>
+                Change from Previous Year:
+                <span class="green-text">+1</span>
+
+            </div>
+
+        </div>
+
+        <!-- TEACHERS -->
+
+        <div class="card">
+
+            <div class="icon teal">
+                <i class="fa-solid fa-user"></i>
+            </div>
+
+            <h3>TEACHERS</h3>
+
+            <div class="number" style="color:#0f9ba8;" id="dashboard-teachers">
+                11
+            </div>
+
+            <small id="dashboard-year5">
+                S.Y 2025-2026
+            </small>
+
+            <div class="label" id="teachersChange">
+
+                <i class="fa-solid fa-arrow-right"></i>
+                Change from Previous Year:
+                <span class="green-text">+1</span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ANALYTICS -->
+
+    <div class="analytics">
+
+        <div class="section-title">
+
+            <h2>ANALYTICS</h2>
+
+            <p>
+                Data-driven analysis for better decision-making
+            </p>
+
+        </div>
+
+        <div class="analytics-grid">
+
+            <div class="analytics-card">
+
+                <div class="analytics-top">
+
+                    <i class="fa-solid fa-chart-column" style="color:#0d6efd;"></i>
+
+                    <div>
+                        <h3>DATA OVERVIEW</h3>
+                        <small>What is happening?</small>
+                    </div>
+
+                </div>
+
+                <p>
+                    View enrollment trends, grade level distribution,
+                    and gender breakdown.
+                </p>
+
+                <button onclick="openPage('page-overview')">
+                    View Details
+                </button>
+
+            </div>
+
+            <div class="analytics-card orange-border">
+
+                <div class="analytics-top">
+
+                    <i class="fa-solid fa-magnifying-glass" style="color:#ff8800;"></i>
+
+                    <div>
+                        <h3>KEY ISSUES & CAUSES</h3>
+                        <small>Why is it happening?</small>
+                    </div>
+
+                </div>
+
+                <p>
+                    Identify key issues such as repeaters,
+                    enrollment fluctuation, and congestion.
+                </p>
+
+                <button class="orange-btn" onclick="openPage('page-issues')">
+                    View Details
+                </button>
+
+            </div>
+
+            <div class="analytics-card green-border">
+
+                <div class="analytics-top">
+
+                    <i class="fa-solid fa-chart-line" style="color:#198754;"></i>
+
+                    <div>
+                        <h3>TRENDS & FORECAST</h3>
+                        <small>What will happen?</small>
+                    </div>
+
+                </div>
+
+                <p>
+                    Explore future enrollment projection,
+                    forecast, and risk areas.
+                </p>
+
+                <button class="green-btn" onclick="openPage('page-forecast')">
+                    View Details
+                </button>
+
+            </div>
+
+            <div class="analytics-card red-border">
+
+                <div class="analytics-top">
+
+                    <i class="fa-solid fa-bullseye" style="color:#dc3545;"></i>
+
+                    <div>
+                        <h3>RECOMMENDATION</h3>
+                        <small>What should we do?</small>
+                    </div>
+
+                </div>
+
+                <p>
+                    View recommended actions to improve retention,
+                    optimize resources, and support learning.
+                </p>
+
+                <button class="red-btn" onclick="openPage('page-recommendation')">
+                    View Details
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- FOOTER -->
+
+    <div class="footer">
+
+        <div class="footer-left">
+
+            <i class="fa-solid fa-circle-info"></i>
+
+            <div>
+
+                <strong>Data Source:</strong>
+                School Enrollment Records, Teacher Information, Facilities Inventory
+
+                <br>
+
+                <strong>Coverage:</strong>
+                School Year 2021-2022 to 2025-2026
+
+            </div>
+
+        </div>
+
+        <div class="footer-right">
+
+            <i class="fa-solid fa-calendar-days"></i>
+
+            <div>
+
+                <strong>Last Updated</strong>
+
+                <br>
+
+                <span id="dateNow"></span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+    
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ENROLLMENTTTTTTTTTTTTTTTTTTTT -->
+
+
+
+<div id="page-enrollment" class="page" style="display:none;">
+    
+<!-- MENU BAR -->
+
+<div class="menu-bar">
+
+    <div class="menu-left">
+
+        <button class="menu-toggle" onclick="toggleSidebar()">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <h2>Dashboard Panel</h2>
+
+    </div>
+
+    <div class="menu-right">
+
+        <div class="menu-profile">
+            <img src="logo.png">
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- TOPBAR -->
+
+<div class="topbar">
+
+<div>
+
+<h1>
+Enrollment Management
+</h1>
+
+<p>
+Monitor and manage student enrollment data
+</p>
+
+</div>
+
+<div class="school-year">
+
+<i class="fa-solid fa-calendar"></i>
+
+<select id="enrollmentYearSelect">
+
+<option value="2021-2022">SY 2021-2022</option>
+<option value="2022-2023">SY 2022-2023</option>
+<option value="2023-2024">SY 2023-2024</option>
+<option value="2024-2025">SY 2024-2025</option>
+<option value="2025-2026" selected>SY 2025-2026</option>
+
+</select>
+
+</div>
+
+</div>
+
+<!-- KPI -->
+
+<div class="cards">
+
+<div class="card">
+
+<div class="card-top">
+
+<div class="icon blue">
+<i class="fa-solid fa-users"></i>
+</div>
+
+<div>
+
+<h3>TOTAL STUDENTS</h3>
+
+<div class="number"
+style="color:#0d6efd;"
+id="enrollment-totalStudents">
+294
+</div>
+
+<small id="yearText">
+SY 2025-2026
+</small>
+
+</div>
+
+</div>
+
+<div class="card-bottom"
+id="studentChange">
+
+<i class="fa-solid fa-arrow-down"
+style="color:red;"></i>
+
+-6.37%
+
+<br>
+
+<i>(vs S.Y 2024-2025)</i>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="card-top">
+
+<div class="icon blue">
+<i class="fa-solid fa-mars"></i>
+</div>
+
+<div>
+
+<h3>MALE</h3>
+
+<div class="number"
+style="color:#0d6efd;"
+id="enrollment-male">
+152
+</div>
+
+<small>
+51.7%
+</small>
+
+</div>
+
+</div>
+
+<div class="card-bottom">
+Male Students
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="card-top">
+
+<div class="icon pink">
+<i class="fa-solid fa-venus"></i>
+</div>
+
+<div>
+
+<h3>FEMALE</h3>
+
+<div class="number"
+style="color:#ff4f8b;"
+id="enrollment-female">
+142
+</div>
+
+<small>
+48.3%
+</small>
+
+</div>
+
+</div>
+
+<div class="card-bottom">
+Female Students
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="card-top">
+
+<div class="icon orange">
+<i class="fa-solid fa-rotate"></i>
+</div>
+
+<div>
+
+<h3>REPEATERS</h3>
+
+<div class="number"
+style="color:#ff8800;"
+id="enrollment-repeaters">
+4
+</div>
+
+<small id="repeatPercent">
+33.33%
+</small>
+
+</div>
+
+</div>
+
+<div class="card-bottom"
+id="repeatNote">
+
+<i>(from 3 to 4)</i>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- CHARTS -->
+
+<div class="chart-grid">
+
+<!-- TREND -->
+
+<div class="chart-card">
+
+<h3>
+ENROLLMENT TREND
+</h3>
+
+<div class="trend-chart">
+
+<div class="y-axis">
+<span>340</span>
+<span>320</span>
+<span>300</span>
+<span>280</span>
+<span>260</span>
+<span>240</span>
+<span>220</span>
+<span>200</span>
+</div>
+
+<div class="chart-content">
+
+<div class="line-svg">
+
+<svg width="100%" height="230" viewBox="0 0 700 230">
+
+<!-- LINE -->
+<polyline
+fill="none"
+stroke="#0d6efd"
+stroke-width="4"
+points="
+60,110
+190,125
+320,105
+450,55
+580,80
+"/>
+
+<!-- DOTS -->
+<circle cx="60" cy="110" r="7" fill="#0d6efd"/>
+<circle cx="190" cy="125" r="7" fill="#0d6efd"/>
+<circle cx="320" cy="105" r="7" fill="#0d6efd"/>
+<circle cx="450" cy="55" r="7" fill="#0d6efd"/>
+<circle cx="580" cy="80" r="7" fill="#0d6efd"/>
+
+<!-- VALUES -->
+<text x="48" y="92" font-size="18" fill="#333">271</text>
+<text x="178" y="107" font-size="18" fill="#333">258</text>
+<text x="308" y="87" font-size="18" fill="#333">274</text>
+<text x="438" y="37" font-size="18" fill="#333">314</text>
+<text x="568" y="62" font-size="18" fill="#333">294</text>
+
+<!-- YEARS -->
+<text x="20" y="205" font-size="15" fill="#555">2021-2022</text>
+<text x="150" y="205" font-size="15" fill="#555">2022-2023</text>
+<text x="280" y="205" font-size="15" fill="#555">2023-2024</text>
+<text x="410" y="205" font-size="15" fill="#555">2024-2025</text>
+<text x="540" y="205" font-size="15" fill="#555">2025-2026</text>
+
+</svg>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- GRADE LEVEL -->
+
+<div class="chart-card">
+
+<h3 id="gradeTitle">
+ENROLLMENT BY GRADE LEVEL
+(SY 2025-2026)
+</h3>
+
+
+<div class="grade-chart">
+
+<div class="grade-bar">
+<div class="value">40</div>
+<div class="bar-fill" style="height:115px;"></div>
+<label>Kinder</label>
+</div>
+
+<div class="grade-bar">
+<div class="value">62</div>
+<div class="bar-fill" style="height:175px;"></div>
+<label>Grade 1</label>
+</div>
+
+<div class="grade-bar">
+<div class="value">51</div>
+<div class="bar-fill" style="height:145px;"></div>
+<label>Grade 2</label>
+</div>
+
+<div class="grade-bar">
+<div class="value">44</div>
+<div class="bar-fill" style="height:125px;"></div>
+<label>Grade 3</label>
+</div>
+
+<div class="grade-bar">
+<div class="value">44</div>
+<div class="bar-fill" style="height:125px;"></div>
+<label>Grade 4</label>
+</div>
+
+<div class="grade-bar">
+<div class="value">28</div>
+<div class="bar-fill" style="height:80px;"></div>
+<label>Grade 5</label>
+</div>
+
+<div class="grade-bar">
+<div class="value">25</div>
+<div class="bar-fill" style="height:70px;"></div>
+<label>Grade 6</label>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- TABLE + INSIGHT -->
+
+<div class="bottom-grid">
+
+<!-- TABLE -->
+
+<div class="table-card">
+
+<h3>
+ENROLLMENT SUMMARY TABLE
+(SY 2021-2022 TO 2025-2026)
+</h3>
+
+<div style="overflow:auto;">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th rowspan="2">GRADE LEVEL</th>
+
+<th colspan="3">2021-2022</th>
+<th colspan="3">2022-2023</th>
+<th colspan="3">2023-2024</th>
+<th colspan="3">2024-2025</th>
+<th colspan="3">2025-2026</th>
+
+<th rowspan="2">REPEATERS</th>
+<th rowspan="2">DROPOUTS</th>
+
+</tr>
+
+<tr>
+
+<th>M</th><th>F</th><th>TOTAL</th>
+<th>M</th><th>F</th><th>TOTAL</th>
+<th>M</th><th>F</th><th>TOTAL</th>
+<th>M</th><th>F</th><th>TOTAL</th>
+<th>M</th><th>F</th><th>TOTAL</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+<td>Kinder</td>
+<td>20</td><td>20</td><td>40</td>
+<td>20</td><td>25</td><td>45</td>
+<td>17</td><td>28</td><td>45</td>
+<td>16</td><td>19</td><td>35</td>
+<td>24</td><td>26</td><td>50</td>
+<td>0</td>
+<td>0</td>
+</tr>
+
+<tr>
+<td>Grade 1</td>
+<td>20</td><td>20</td><td>40</td>
+<td>22</td><td>28</td><td>50</td>
+<td>20</td><td>28</td><td>48</td>
+<td>25</td><td>26</td><td>51</td>
+<td>18</td><td>18</td><td>36</td>
+<td>2</td>
+<td>0</td>
+</tr>
+
+<tr>
+<td>Grade 2</td>
+<td>15</td><td>16</td><td>31</td>
+<td>19</td><td>19</td><td>38</td>
+<td>23</td><td>23</td><td>46</td>
+<td>22</td><td>21</td><td>43</td>
+<td>24</td><td>26</td><td>50</td>
+<td>1</td>
+<td>0</td>
+</tr>
+
+<tr>
+<td>Grade 3</td>
+<td>28</td><td>25</td><td>53</td>
+<td>16</td><td>17</td><td>33</td>
+<td>21</td><td>22</td><td>43</td>
+<td>26</td><td>24</td><td>50</td>
+<td>22</td><td>23</td><td>45</td>
+<td>1</td>
+<td>0</td>
+</tr>
+
+<tr>
+<td>Grade 4</td>
+<td>18</td><td>17</td><td>35</td>
+<td>14</td><td>13</td><td>27</td>
+<td>16</td><td>16</td><td>32</td>
+<td>22</td><td>22</td><td>44</td>
+<td>26</td><td>27</td><td>53</td>
+<td>0</td>
+<td>0</td>
+</tr>
+
+<tr>
+<td>Grade 5</td>
+<td>19</td><td>14</td><td>33</td>
+<td>17</td><td>16</td><td>33</td>
+<td>15</td><td>14</td><td>29</td>
+<td>15</td><td>17</td><td>32</td>
+<td>22</td><td>21</td><td>43</td>
+<td>0</td>
+<td>0</td>
+</tr>
+
+<tr>
+<td>Grade 6</td>
+<td>22</td><td>17</td><td>39</td>
+<td>18</td><td>14</td><td>32</td>
+<td>19</td><td>12</td><td>31</td>
+<td>32</td><td>27</td><td>59</td>
+<td>16</td><td>18</td><td>34</td>
+<td>0</td>
+<td>0</td>
+</tr>
+
+<tr style="font-weight:bold;background:#f4f7fb;">
+
+<td>TOTAL</td>
+
+<td>143</td><td>128</td><td>271</td>
+<td>136</td><td>122</td><td>258</td>
+<td>141</td><td>133</td><td>274</td>
+<td>158</td><td>156</td><td>314</td>
+<td>152</td><td>142</td><td>294</td>
+
+<td style="color:#dc3545;">4</td>
+<td>0</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+<!-- INSIGHTS -->
+
+<div class="insight-card">
+
+<h3>
+QUICK INSIGHTS
+</h3>
+
+<div class="insight">
+
+<i class="fa-solid fa-lightbulb"
+style="color:#0d6efd;"></i>
+
+<div>
+Enrollment peaked in
+SY 2024-2025
+with 314 students.
+</div>
+
+</div>
+
+<div class="insight">
+
+<i class="fa-solid fa-star"
+style="color:#ff8800;"></i>
+
+<div>
+Grade 4 has the highest
+enrollment in
+SY 2025-2026.
+</div>
+
+</div>
+
+<div class="insight">
+
+<i class="fa-solid fa-circle-check"
+style="color:#198754;"></i>
+
+<div>
+No dropout recorded
+across all years.
+</div>
+
+</div>
+
+<div class="insight">
+
+<i class="fa-solid fa-chart-line"
+style="color:#dc3545;"></i>
+
+<div>
+Overall enrollment
+decreased by -6.37%
+from last year.
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- FOOTER -->
+
+<div class="footer">
+
+<div class="footer-left">
+
+<i class="fa-solid fa-circle-info"></i>
+
+<div>
+
+<strong>Data Source:</strong>
+School Enrollment Records, Teacher Information, Facilities Inventory
+
+<br>
+
+<strong>Coverage:</strong>
+School Year 2021-2022 to 2025-2026
+
+</div>
+
+</div>
+
+<div class="footer-right">
+
+<i class="fa-solid fa-calendar-days"></i>
+
+<div>
+
+<strong>Last Updated</strong>
+
+<br>
+
+<span id="dateNow"></span>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+<!-- ================= TEACHERS PAGE ================= -->
+
+<div id="page-teachers" class="page" style="display:none;">
+  <!-- MENU BAR -->
+
+<div class="menu-bar">
+
+    <div class="menu-left">
+
+        <button class="menu-toggle" onclick="toggleSidebar()">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <h2>Dashboard Panel</h2>
+
+    </div>
+
+    <div class="menu-right">
+
+        <div class="menu-profile">
+            <img src="logo.png">
+        </div>
+
+    </div>
+
+</div>
+
+  <div class="teachers-topbar">
+    <div>
+      <h1>Teachers Management</h1>
+      <p>Manage teacher information and track distribution</p>
+    </div>
+
+    <div class="school-year">
+      <i class="fa-solid fa-calendar"></i>
+      <select id="teachersYearSelect">
+        <option value="2021-2022">SY 2021-2022</option>
+        <option value="2022-2023">SY 2022-2023</option>
+        <option value="2023-2024">SY 2023-2024</option>
+        <option value="2024-2025">SY 2024-2025</option>
+        <option value="2025-2026" selected>SY 2025-2026</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="teacher-cards">
+
+    <div class="teacher-card">
+      <div class="overview-icon blue"><i class="fa-solid fa-users"></i></div>
+      <h3>TOTAL TEACHERS</h3>
+      <h1 id="teacherTotal">11</h1>
+      <p id="teacherYear1">SY 2025-2026</p>
+      <small id="teacherChange">vs SY 2024-2025: 0%</small>
+    </div>
+
+    <div class="teacher-card">
+      <div class="overview-icon teal"><i class="fa-solid fa-user"></i></div>
+      <h3>TEACHER-STUDENT RATIO</h3>
+      <h1 id="teacherRatio">1:26.7</h1>
+      <p id="teacherYear2">SY 2025-2026</p>
+      <small>Based on total enrollment</small>
+    </div>
+
+    <div class="teacher-card">
+      <div class="overview-icon purple"><i class="fa-solid fa-briefcase"></i></div>
+      <h3>PERMANENT TEACHERS</h3>
+      <h1 id="permanentTeachers">11</h1>
+      <p id="permanentPercent">100% of total</p>
+      <small>Regular/Permanent</small>
+    </div>
+
+    <div class="teacher-card">
+      <div class="overview-icon orange"><i class="fa-solid fa-calendar-days"></i></div>
+      <h3>CONTRACTUAL TEACHERS</h3>
+      <h1 id="contractualTeachers">0</h1>
+      <p id="contractualPercent">0% of total</p>
+      <small>No contractual record</small>
+    </div>
+
+    <div class="teacher-card">
+      <div class="overview-icon green"><i class="fa-solid fa-graduation-cap"></i></div>
+      <h3>WITH MAJOR IN EDUCATION</h3>
+      <h1 id="majorTeachers">11</h1>
+      <p id="majorPercent">100% of total</p>
+      <small>Based on records</small>
+    </div>
+
+  </div>
+
+  <div class="teachers-chart-grid">
+
+    <div class="teacher-panel">
+      <h3 id="teachersGradeTitle">TEACHERS BY GRADE LEVEL (SY 2025-2026)</h3>
+      <div class="teacher-bar-chart" id="teachersGradeChart"></div>
+    </div>
+
+    <div class="teacher-panel">
+      <h3 id="teachersPositionTitle">TEACHERS BY POSITION (SY 2025-2026)</h3>
+      <div class="teacher-donut-wrap">
+        <div class="teacher-donut" id="teacherPositionDonut">
+          <div><h2 id="teacherDonutTotal">11</h2><p>Total</p></div>
+        </div>
+        <div class="teacher-legend" id="teacherPositionLegend"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="teachers-bottom-grid">
+
+    <div class="teacher-panel">
+      <h3 id="teachersListTitle">TEACHERS LIST (SY 2025-2026)</h3>
+
+      <div style="overflow:auto;">
+        <table class="teacher-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Teacher Name</th>
+              <th>Position</th>
+              <th>Status</th>
+              <th>Major</th>
+              <th>Grade Level / Assignment</th>
+              <th>Years in Service</th>
+            </tr>
+          </thead>
+          <tbody id="teachersTableBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="teacher-panel">
+      <h3>QUICK INSIGHTS</h3>
+
+      <div class="quick-insight">
+        <i class="fa-solid fa-shield green-i"></i>
+        <span id="teacherInsight1">Teacher-student ratio is 1:26.7.</span>
+      </div>
+
+      <div class="quick-insight">
+        <i class="fa-solid fa-star orange-i"></i>
+        <span id="teacherInsight2">Most teachers are Teacher VI.</span>
+      </div>
+
+      <div class="quick-insight">
+        <i class="fa-solid fa-user purple-i"></i>
+        <span id="teacherInsight3">All teachers have education-related degrees.</span>
+      </div>
+
+      <div class="quick-insight">
+        <i class="fa-solid fa-chart-column blue-i"></i>
+        <span id="teacherInsight4">Grade level assignment is distributed across levels.</span>
+      </div>
+    </div>
+
+  </div>
+       <div class="dashboard-footer">
+
+  <div class="footer-left">
+
+    <div class="footer-icon">
+      <i class="fa-solid fa-circle-info"></i>
+    </div>
+
+    <div class="footer-text">
+      <strong>Data Source:</strong> School Enrollment Records, Teacher Information, Facilities Inventory
+      <br>
+      <span>
+        <strong>Coverage:</strong> School Year 2021-2022 to 2025-2026
+      </span>
+    </div>
+
+  </div>
+
+  <div class="footer-right">
+
+    <div class="footer-icon">
+      <i class="fa-solid fa-calendar-days"></i>
+    </div>
+
+    <div class="footer-text">
+      <strong>Last Updated</strong><br>
+      <span id="lastUpdated"></span>
+    </div>
+
+  </div>
+
+</div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- FACILITIES PAGE -->
+
+<div id="page-facilities" class="page" style="display:none;">
+
+  <!-- MENU BAR -->
+
+<div class="menu-bar">
+
+    <div class="menu-left">
+
+        <button class="menu-toggle" onclick="toggleSidebar()">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <h2>Dashboard Panel</h2>
+
+    </div>
+
+    <div class="menu-right">
+
+        <div class="menu-profile">
+            <img src="logo.png">
+        </div>
+
+    </div>
+
+</div>
+
+    <div class="topbar">
+
+<div>
+<h1>Facilities Management</h1>
+<p>Monitor and manage school facilities and classroom utilization</p>
+</div>
+
+
+
+   <div class="school-year">
+
+            <i class="fa-solid fa-calendar"></i>
+
+            <select id="facilitiesYearSelect">
+
+                <option value="2021-2022">SY 2021-2022</option>
+                <option value="2022-2023">SY 2022-2023</option>
+                <option value="2023-2024">SY 2023-2024</option>
+                <option value="2024-2025">SY 2024-2025</option>
+                <option value="2025-2026" selected>SY 2025-2026</option>
+
+            </select>
+
+        </div>
+
+</div>
+
+<!-- CARDS -->
+
+<div class="cards">
+
+<div class="card">
+
+<div class="card-top">
+
+<div class="icon blue">
+<i class="fa-solid fa-school"></i>
+</div>
+
+<div>
+<h3>TOTAL CLASSROOMS</h3>
+<div class="number" id="facilities-totalClassrooms">11</div>
+<small id="yearLabel">SY 2025-2026</small>
+</div>
+
+</div>
+
+<div class="label" id="classroomChange"></div>
+
+</div>
+
+<div class="card">
+
+<div class="card-top">
+
+<div class="icon green">
+<i class="fa-solid fa-circle-check"></i>
+</div>
+
+<div>
+<h3>USABLE CLASSROOMS</h3>
+<div class="number" id="facilities-usableClassrooms">11</div>
+<small>Ready for use</small>
+</div>
+
+</div>
+
+<div class="label" id="usableChange"></div>
+
+</div>
+
+<div class="card">
+
+<div class="card-top">
+
+<div class="icon orange">
+<i class="fa-solid fa-users"></i>
+</div>
+
+<div>
+<h3>TOTAL CAPACITY</h3>
+<div class="number" id="facilities-totalCapacity">400</div>
+<small>students</small>
+</div>
+
+</div>
+
+<div class="label" id="capacityChange"></div>
+
+</div>
+
+<div class="card">
+
+<div class="card-top">
+
+<div class="icon purple">
+<i class="fa-solid fa-user-group"></i>
+</div>
+
+<div>
+<h3>AVERAGE CLASS SIZE</h3>
+<div class="number" id="facilities-averageClassSize">26.7</div>
+<small>students/class</small>
+</div>
+
+</div>
+
+<div class="label" id="averageChange">
+
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="card-top">
+
+<div class="icon red">
+<i class="fa-solid fa-triangle-exclamation"></i>
+</div>
+
+<div>
+<h3>OVERCAPACITY</h3>
+<div class="number" id="facilities-overCapacity">2</div>
+<small>classrooms</small>
+</div>
+
+</div>
+
+<div class="label" id="overcapChange">
+
+</div>
+
+</div>
+
+</div>
+
+<!-- CHARTS -->
+
+<div class="grid">
+
+<!-- DONUT -->
+
+<div class="chart-card">
+
+<h2 id="utilTitle">
+CLASSROOM UTILIZATION RATE (SY 2025-2026)
+</h2>
+
+<div class="donut-wrap">
+
+<div class="donut"
+id="donutChart"
+style="background:conic-gradient(#14b8a6 0% 73%, #f59e0b 73% 82%, #ef4444 82% 100%);">
+
+<div class="donut-center">
+<h1 id="utilPercent">73%</h1>
+<p>Utilization Rate</p>
+</div>
+
+</div>
+
+<div class="legend">
+
+<div>
+<div class="dot" style="background:#14b8a6;"></div>
+Within Capacity (<span id="within">73%</span>)
+</div>
+
+<div>
+<div class="dot" style="background:#f59e0b;"></div>
+Near Capacity (<span id="near">9%</span>)
+</div>
+
+<div>
+<div class="dot" style="background:#ef4444;"></div>
+Over Capacity (<span id="over">18%</span>)
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- BAR CHART -->
+
+<div class="chart-card">
+
+<h2 id="barTitle">
+AVERAGE CLASS SIZE BY GRADE LEVEL (SY 2025-2026)
+</h2>
+
+<div class="bar-chart">
+
+<div class="bar-item">
+<div class="bar" id="bar0"><div class="bar-value">50</div></div>
+<label>Kinder</label>
+</div>
+
+<div class="bar-item">
+<div class="bar" id="bar1"><div class="bar-value">18</div></div>
+<label>Grade 1</label>
+</div>
+
+<div class="bar-item">
+<div class="bar" id="bar2"><div class="bar-value">25</div></div>
+<label>Grade 2</label>
+</div>
+
+<div class="bar-item">
+<div class="bar" id="bar3"><div class="bar-value">45</div></div>
+<label>Grade 3</label>
+</div>
+
+<div class="bar-item">
+<div class="bar" id="bar4"><div class="bar-value">26.5</div></div>
+<label>Grade 4</label>
+</div>
+
+<div class="bar-item">
+<div class="bar" id="bar5"><div class="bar-value">43</div></div>
+<label>Grade 5</label>
+</div>
+
+<div class="bar-item">
+<div class="bar" id="bar6"><div class="bar-value">34</div></div>
+<label>Grade 6</label>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- INSIGHTS -->
+
+<div class="insight-card">
+
+<h2>QUICK INSIGHTS</h2>
+
+<div class="insight">
+<i class="fa-solid fa-triangle-exclamation" style="color:#ef4444;"></i>
+<div id="facilities-insight1">
+2 classrooms are over capacity.
+</div>
+</div>
+
+<div class="insight">
+<i class="fa-solid fa-users" style="color:#f59e0b;"></i>
+<div id="facilities-insight2">
+Average class size is 26.7 students.
+</div>
+</div>
+
+<div class="insight">
+<i class="fa-solid fa-chart-pie" style="color:#14b8a6;"></i>
+<div id="facilities-insight3">
+73% of classrooms are within recommended capacity.
+</div>
+</div>
+
+</div>
+
+<!-- FOOTER -->
+
+<div class="dashboard-footer">
+
+    <div class="footer-left">
+
+        <div class="footer-icon">
+            <i class="fa-solid fa-circle-info"></i>
+        </div>
+
+        <div class="footer-text">
+            <strong>Data Source:</strong> School Enrollment Records, Teacher Information, Facilities Inventory
+            <br><span><strong> Coverege:</strong> School Year 2021-2022 to 2025-2026</strong></span>
+        </div>
+
+    </div>
+
+   <div class="footer-right">
+
+    <div class="footer-icon">
+        <i class="fa-solid fa-calendar-days"></i>
+    </div>
+
+    <div class="footer-text">
+        <strong>Last Updated</strong><br>
+        <span id="lastUpdated">
+            14/05/2026, 00:04:06
+        </span>
+    </div>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="page-overview" class="page" style="display:none;">
+
+  <!-- MENU BAR -->
+
+<div class="menu-bar">
+
+    <div class="menu-left">
+
+        <button class="menu-toggle" onclick="toggleSidebar()">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <h2>Dashboard Panel</h2>
+
+    </div>
+
+    <div class="menu-right">
+
+        <div class="menu-profile">
+            <img src="logo.png">
+        </div>
+
+    </div>
+
+</div>
+
+  <div class="overview-topbar">
+    <div>
+      <h1>Data Overview</h1>
+      <p>Snapshot of key metrics and overall school performance</p>
+    </div>
+
+    <div class="school-year">
+      <i class="fa-solid fa-calendar"></i>
+      <select id="overviewYearSelect">
+        <option value="2021-2022">SY 2021-2022</option>
+        <option value="2022-2023">SY 2022-2023</option>
+        <option value="2023-2024">SY 2023-2024</option>
+        <option value="2024-2025">SY 2024-2025</option>
+        <option value="2025-2026" selected>SY 2025-2026</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="overview-cards">
+
+    <div class="overview-card">
+      <div class="overview-icon blue"><i class="fa-solid fa-users"></i></div>
+      <h3>TOTAL ENROLLMENT</h3>
+      <h1 id="ovEnrollment">294</h1>
+      <p>students</p>
+      <small id="ovEnrollmentChange">vs SY 2024-2025: -6.37%</small>
+    </div>
+
+    <div class="overview-card">
+      <div class="overview-icon green"><i class="fa-solid fa-graduation-cap"></i></div>
+      <h3>TOTAL TEACHERS</h3>
+      <h1 id="ovTeachers">11</h1>
+      <p>teachers</p>
+      <small id="ovTeachersChange">vs SY 2024-2025: 0%</small>
+    </div>
+
+    <div class="overview-card">
+      <div class="overview-icon purple"><i class="fa-solid fa-school"></i></div>
+      <h3>TOTAL CLASSROOMS</h3>
+      <h1 id="ovClassrooms">11</h1>
+      <p>classrooms</p>
+      <small id="ovClassroomChange">vs SY 2024-2025: 0%</small>
+    </div>
+
+    <div class="overview-card">
+      <div class="overview-icon orange"><i class="fa-solid fa-user-group"></i></div>
+      <h3>TEACHER-STUDENT RATIO</h3>
+      <h1 id="ovRatio">1:27</h1>
+      <p>ratio</p>
+      <small id="ovRatioChange">vs SY 2024-2025</small>
+    </div>
+
+    <div class="overview-card">
+      <div class="overview-icon teal"><i class="fa-solid fa-users-viewfinder"></i></div>
+      <h3>AVERAGE CLASS SIZE</h3>
+      <h1 id="ovAvgClass">26.7</h1>
+      <p>students/class</p>
+      <small id="ovAvgChange">vs SY 2024-2025</small>
+    </div>
+
+    <div class="overview-card">
+      <div class="overview-icon red"><i class="fa-solid fa-triangle-exclamation"></i></div>
+      <h3>OVERCAPACITY CLASSROOMS</h3>
+      <h1 id="ovOvercap">2</h1>
+      <p>classrooms</p>
+      <small id="ovOvercapChange">vs SY 2024-2025</small>
+    </div>
+
+  </div>
+
+  <div class="overview-grid">
+
+    <div class="overview-panel">
+      <h3>ENROLLMENT TREND (SY 2021-2022 TO 2025-2026)</h3>
+      <svg id="ovTrendChart" viewBox="0 0 600 260"></svg>
+    </div>
+
+    <div class="overview-panel">
+      <h3 id="ovGradeTitle">ENROLLMENT BY GRADE LEVEL (SY 2025-2026)</h3>
+      <div class="ov-bar-chart" id="ovGradeChart"></div>
+    </div>
+
+    <div class="overview-panel">
+      <h3>TEACHERS BY POSITION</h3>
+      <div class="teacher-donut-wrap">
+        <div class="teacher-donut">
+          <div><h2>11</h2><p>Total</p></div>
+        </div>
+        <div class="teacher-legend">
+          <p><span class="dot blue-dot"></span> Teacher I - 7</p>
+          <p><span class="dot teal-dot"></span> Master Teacher I - 2</p>
+          <p><span class="dot purple-dot"></span> Teacher II - 1</p>
+          <p><span class="dot orange-dot"></span> Master Teacher II - 1</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="overview-bottom-grid">
+
+    <div class="overview-panel">
+      <h3>KEY FIGURES OVERVIEW</h3>
+      <table class="overview-table">
+        <thead>
+          <tr>
+            <th>INDICATOR</th>
+            <th id="prevYearHead">SY 2024-2025</th>
+            <th id="currentYearHead">SY 2025-2026</th>
+            <th>CHANGE</th>
+          </tr>
+        </thead>
+        <tbody id="overviewTableBody"></tbody>
+      </table>
+    </div>
+
+    <div class="overview-panel">
+      <h3>FACILITY CAPACITY STATUS</h3>
+      <div class="facility-status">
+        <div class="facility-donut" id="facilityDonut">
+          <div><h2 id="facilityRate">73%</h2><p>Utilization Rate</p></div>
+        </div>
+        <div class="facility-legend">
+          <p><span class="dot teal-dot"></span> Within Capacity <br><small id="withinText">8 classrooms</small></p>
+          <p><span class="dot orange-dot"></span> Near Capacity <br><small id="nearText">2 classrooms</small></p>
+          <p><span class="dot red-dot"></span> Over Capacity <br><small id="overText">1 classroom</small></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="overview-panel">
+      <h3>QUICK INSIGHTS</h3>
+
+      <div class="quick-insight">
+        <i class="fa-solid fa-users blue-i"></i>
+        <span id="insight1">Enrollment decreased by 20 students from last year.</span>
+      </div>
+
+      <div class="quick-insight">
+        <i class="fa-solid fa-user-group orange-i"></i>
+        <span id="insight2">Teacher-student ratio is 1:26.7.</span>
+      </div>
+
+      <div class="quick-insight">
+        <i class="fa-solid fa-school purple-i"></i>
+        <span id="insight3">Grade 4 has the highest enrollment.</span>
+      </div>
+
+      <div class="quick-insight">
+        <i class="fa-solid fa-triangle-exclamation red-i"></i>
+        <span id="insight4">2 classrooms are over capacity.</span>
+      </div>
+
+      <div class="quick-insight">
+        <i class="fa-solid fa-shield green-i"></i>
+        <span id="insight5">Overall facility utilization rate is at 73%.</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="dashboard-footer">
+    <div class="footer-left">
+      <div class="footer-icon">
+        <i class="fa-solid fa-circle-info"></i>
+      </div>
+      <div class="footer-text">
+        <strong>Data Source:</strong> School Enrollment Records, Teacher Information, Facilities Inventory
+        <br>
+        <span><strong>Coverage:</strong> School Year 2021-2022 to 2025-2026</span>
+      </div>
+    </div>
+
+    <div class="footer-right">
+      <div class="footer-icon">
+        <i class="fa-solid fa-calendar-days"></i>
+      </div>
+      <div class="footer-text">
+        <strong>Last Updated</strong><br>
+        <span>May 14, 2026</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="page-issues" class="page" style="display:none;">
+
+  <!-- MENU BAR -->
+
+<div class="menu-bar">
+
+    <div class="menu-left">
+
+        <button class="menu-toggle" onclick="toggleSidebar()">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <h2>Dashboard Panel</h2>
+
+    </div>
+
+    <div class="menu-right">
+
+        <div class="menu-profile">
+            <img src="logo.png">
+        </div>
+
+    </div>
+
+</div>
+
+  <div class="issues-topbar">
+    <div>
+      <h1>Key Issues & Causes</h1>
+      <p>Identify critical problems and underlying factors affecting performance</p>
+    </div>
+
+    <div class="school-year">
+      <i class="fa-solid fa-calendar"></i>
+      <select id="issuesYearSelect">
+        <option value="2021-2022">SY 2021-2022</option>
+        <option value="2022-2023">SY 2022-2023</option>
+        <option value="2023-2024">SY 2023-2024</option>
+        <option value="2024-2025">SY 2024-2025</option>
+        <option value="2025-2026" selected>SY 2025-2026</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="issues-cards">
+
+    <div class="issue-card">
+      <div class="issue-card-main">
+        <div class="issue-icon red-bg">
+          <i class="fa-solid fa-triangle-exclamation"></i>
+        </div>
+        <div>
+          <h3 id="issueRepeatTitle">High Repeaters in Grade 1</h3>
+          <h1 id="issueRepeatPercent">75%</h1>
+          <p id="issueRepeatDesc">of total repeaters are from Grade 1.</p>
+        </div>
+      </div>
+      <div class="severity-row">
+        <strong>Severity:</strong>
+        <span class="severity high">High Risk</span>
+      </div>
+    </div>
+
+    <div class="issue-card">
+      <div class="issue-card-main">
+        <div class="issue-icon orange-bg">
+          <i class="fa-solid fa-triangle-exclamation"></i>
+        </div>
+        <div>
+          <h3>Enrollment Instability</h3>
+          <h1 id="issueEnrollmentRange">258 – 314</h1>
+          <p>students fluctuated in the last 5 school years.</p>
+        </div>
+      </div>
+      <div class="severity-row">
+        <strong>Severity:</strong>
+        <span class="severity medium">Medium Risk</span>
+      </div>
+    </div>
+
+    <div class="issue-card">
+      <div class="issue-card-main">
+        <div class="issue-icon yellow-bg">
+          <i class="fa-solid fa-triangle-exclamation"></i>
+        </div>
+        <div>
+          <h3>Classroom Congestion Risk</h3>
+          <h1 id="issueAvgClass">26.7</h1>
+          <p>average class size exceeds the recommended 20–25 students.</p>
+        </div>
+      </div>
+      <div class="severity-row">
+        <strong>Severity:</strong>
+        <span class="severity medium">Medium Risk</span>
+      </div>
+    </div>
+
+    <div class="issue-card">
+      <div class="issue-card-main">
+        <div class="issue-icon purple-bg">
+          <i class="fa-solid fa-triangle-exclamation"></i>
+        </div>
+        <div>
+          <h3>Overcapacity Classrooms</h3>
+          <h1 id="issueOvercap">2</h1>
+          <p id="issueOvercapDesc">classrooms are over capacity.</p>
+        </div>
+      </div>
+      <div class="severity-row">
+        <strong>Severity:</strong>
+        <span class="severity high">High Risk</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="issues-main-grid">
+
+    <div class="issue-panel red-panel">
+      <h3><i class="fa-solid fa-users"></i> 1. REPEATERS ANALYSIS <span>(Root Cause)</span></h3>
+      <h4 id="repeatersChartTitle">REPEATERS BY GRADE LEVEL (SY 2025-2026)</h4>
+      <div class="issue-bar-chart" id="repeatersIssueChart"></div>
+
+      <div class="issue-insight red-insight">
+        <strong><i class="fa-regular fa-lightbulb"></i> INSIGHT</strong>
+        <p id="repeatersInsight">Majority of repeaters are in Grade 1.</p>
+      </div>
+    </div>
+
+    <div class="issue-panel orange-panel">
+      <h3><i class="fa-solid fa-chart-line"></i> 2. ENROLLMENT INSTABILITY <span>(Root Cause)</span></h3>
+      <h4>ENROLLMENT TREND (SY 2021-2022 TO 2025-2026)</h4>
+      <svg id="issuesTrendChart" viewBox="0 0 650 260"></svg>
+
+      <div class="issue-insight orange-insight">
+        <strong><i class="fa-regular fa-lightbulb"></i> INSIGHT</strong>
+        <p>Enrollment shows fluctuations over the years, which may be linked to relocation, economic factors, and community changes.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="issues-bottom-grid">
+
+    <div class="issue-panel green-panel">
+      <h3><i class="fa-solid fa-building"></i> 3. FACILITY ISSUE ANALYSIS <span>(Root Cause)</span></h3>
+      <h4 id="facilityIssueTitle">ENROLLMENT VS CLASSROOM CAPACITY (SY 2025-2026)</h4>
+
+      <div class="facility-issue-wrap">
+        <div class="capacity-chart" id="capacityIssueChart"></div>
+
+        <div class="issue-insight green-insight">
+          <strong><i class="fa-solid fa-check"></i> INSIGHT</strong>
+          <p id="facilityIssueInsight">Grades with enrollment above recommended capacity need monitoring.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="issue-panel blue-panel">
+      <h3><i class="fa-solid fa-bullseye"></i> 4. ROOT CAUSE SUMMARY</h3>
+
+      <div class="root-row">
+        <i class="fa-solid fa-users red-i"></i>
+        <strong>Transition Gap</strong>
+        <p>Students may struggle during the transition from Kinder to Grade 1.</p>
+      </div>
+
+      <div class="root-row">
+        <i class="fa-solid fa-user-group orange-i"></i>
+        <strong>External Demographic Shifts</strong>
+        <p>Parental relocation, economic factors, and community changes affect enrollment.</p>
+      </div>
+
+      <div class="root-row">
+        <i class="fa-solid fa-school purple-i"></i>
+        <strong>Unequal Classroom Sizes</strong>
+        <p>Some classrooms may become congested during high enrollment years.</p>
+      </div>
+
+      <div class="root-row">
+        <i class="fa-solid fa-user teal-i"></i>
+        <strong>Fixed Teacher Allocation</strong>
+        <p>Teacher allocation does not fully adjust to fluctuating enrollment.</p>
+      </div>
+    </div>
+
+    <div class="issue-panel severity-guide">
+      <h3>ISSUE SEVERITY GUIDE</h3>
+
+      <div class="guide-item">
+        <i class="fa-solid fa-triangle-exclamation red-i"></i>
+        <div>
+          <h4>HIGH RISK</h4>
+          <p>Immediate attention required</p>
+          <small>• Grade 1 Repeaters<br>• Overcapacity Classrooms</small>
+        </div>
+      </div>
+
+      <div class="guide-item">
+        <i class="fa-solid fa-triangle-exclamation orange-i"></i>
+        <div>
+          <h4>MEDIUM RISK</h4>
+          <p>Monitor and address soon</p>
+          <small>• Enrollment Instability<br>• Classroom Congestion</small>
+        </div>
+      </div>
+
+      <div class="guide-item">
+        <i class="fa-solid fa-triangle-exclamation yellow-i"></i>
+        <div>
+          <h4>LOW RISK</h4>
+          <p>Continue monitoring</p>
+          <small>• Teacher Allocation Gap</small>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="dashboard-footer">
+    <div class="footer-left">
+      <div class="footer-icon">
+        <i class="fa-solid fa-circle-info"></i>
+      </div>
+      <div class="footer-text">
+        <strong>Data Source:</strong> School Enrollment Records, Teacher Information, Facilities Inventory
+        <br>
+        <span><strong>Coverage:</strong> School Year 2021-2022 to 2025-2026</span>
+      </div>
+    </div>
+
+    <div class="footer-right">
+      <div class="footer-icon">
+        <i class="fa-solid fa-calendar-days"></i>
+      </div>
+      <div class="footer-text">
+        <strong>Last Updated</strong><br>
+        <span>May 14, 2026</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="page-forecast" class="page" style="display:none;">
+
+  <!-- MENU BAR -->
+
+<div class="menu-bar">
+
+    <div class="menu-left">
+
+        <button class="menu-toggle" onclick="toggleSidebar()">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <h2>Dashboard Panel</h2>
+
+    </div>
+
+    <div class="menu-right">
+
+        <div class="menu-profile">
+            <img src="logo.png">
+        </div>
+
+    </div>
+
+</div>
+
+  <div class="forecast-topbar">
+    <div>
+      <h1>Trends & Forecast</h1>
+      <p>Analyze historical trends and forecast future performance</p>
+    </div>
+
+    <div class="school-year">
+      <i class="fa-solid fa-calendar"></i>
+      <select id="forecastYearSelect">
+        <option value="2021-2022">SY 2021-2022</option>
+        <option value="2022-2023">SY 2022-2023</option>
+        <option value="2023-2024">SY 2023-2024</option>
+        <option value="2024-2025">SY 2024-2025</option>
+        <option value="2025-2026" selected>SY 2025-2026</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="forecast-cards">
+
+    <div class="forecast-card">
+      <div class="overview-icon blue"><i class="fa-solid fa-users"></i></div>
+      <h3>ENROLLMENT</h3>
+      <h1 id="forecastEnrollment">294</h1>
+      <p>students</p>
+      <small id="forecastEnrollmentNote">Selected school year enrollment</small>
+    </div>
+
+    <div class="forecast-card">
+      <div class="overview-icon green"><i class="fa-solid fa-chart-line"></i></div>
+      <h3>ENROLLMENT RANGE</h3>
+      <h1>258 - 314</h1>
+      <p>students</p>
+      <small>Based on SY 2021-2022 to 2025-2026</small>
+    </div>
+
+    <div class="forecast-card">
+      <div class="overview-icon purple"><i class="fa-solid fa-user-group"></i></div>
+      <h3>AVERAGE CLASS SIZE</h3>
+      <h1 id="forecastClassSize">26.7</h1>
+      <p>students/class</p>
+      <small id="forecastClassNote">Selected school year average class size</small>
+    </div>
+
+    <div class="forecast-card">
+      <div class="overview-icon orange"><i class="fa-solid fa-calendar-days"></i></div>
+      <h3>CLASSROOM NEED</h3>
+      <h1 id="forecastNeed">1</h1>
+      <p>additional classroom(s)</p>
+      <small id="forecastNeedNote">Based on selected school year</small>
+    </div>
+
+  </div>
+
+  <div class="forecast-grid">
+
+    <div class="forecast-panel">
+      <h3>ENROLLMENT TREND</h3>
+      <svg id="forecastEnrollmentChart" viewBox="0 0 700 280"></svg>
+
+      <div class="forecast-note">
+        <i class="fa-solid fa-circle-info"></i>
+        <span>Enrollment shows changes across the five school years.</span>
+      </div>
+    </div>
+
+    <div class="forecast-panel">
+      <h3>AVERAGE CLASS SIZE TREND</h3>
+      <svg id="forecastClassChart" viewBox="0 0 700 280"></svg>
+
+      <div class="forecast-note purple-note">
+        <i class="fa-solid fa-circle-info"></i>
+        <span>Average class size varies depending on total enrollment and available classrooms.</span>
+      </div>
+    </div>
+
+    <div class="forecast-panel forecast-insights">
+      <h3>TREND INSIGHTS</h3>
+
+      <div class="quick-insight">
+        <i class="fa-solid fa-chart-line blue-i"></i>
+        <span id="forecastInsight1">Enrollment trend reached 294 students for SY 2025-2026.</span>
+      </div>
+
+      <div class="quick-insight">
+        <i class="fa-solid fa-users purple-i"></i>
+        <span id="forecastInsight2">Average class size is 26.7 students per class.</span>
+      </div>
+
+      <div class="quick-insight">
+        <i class="fa-solid fa-calendar-days orange-i"></i>
+        <span id="forecastInsight3">Additional classroom monitoring is needed.</span>
+      </div>
+
+      <div class="quick-insight">
+        <i class="fa-solid fa-check green-i"></i>
+        <span>Teacher allocation should be reviewed based on enrollment changes.</span>
+      </div>
+
+      <button class="recommend-btn" onclick="openPage('page-recommendation')">
+        View Recommendation <i class="fa-solid fa-arrow-right"></i>
+      </button>
+    </div>
+
+  </div>
+
+  <div class="forecast-bottom-grid">
+
+    <div class="forecast-panel">
+      <h3>ENROLLMENT BY GRADE LEVEL</h3>
+
+      <div style="overflow:auto;">
+        <table class="forecast-table">
+          <thead>
+            <tr>
+              <th>Grade Level</th>
+              <th>2021-2022</th>
+              <th>2022-2023</th>
+              <th>2023-2024</th>
+              <th>2024-2025</th>
+              <th>2025-2026</th>
+            </tr>
+          </thead>
+          <tbody id="forecastGradeTable"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="forecast-panel">
+      <h3>CLASSROOM NEED PROJECTION</h3>
+
+      <div class="classroom-projection">
+        <div>
+          <i class="fa-solid fa-school blue-building"></i>
+          <h2 id="availableClassrooms">11</h2>
+          <p>Available Classrooms</p>
+        </div>
+
+        <div class="vs-circle">VS</div>
+
+        <div>
+          <i class="fa-solid fa-building green-building"></i>
+          <h2 id="projectedClassrooms">12</h2>
+          <p>Projected Need</p>
+        </div>
+      </div>
+
+      <div class="shortage-box">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+        <span id="shortageText">1 additional classroom may be needed for selected year.</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="dashboard-footer">
+    <div class="footer-left">
+      <div class="footer-icon">
+        <i class="fa-solid fa-circle-info"></i>
+      </div>
+      <div class="footer-text">
+        <strong>Data Source:</strong> School Enrollment Records, Teacher Information, Facilities Inventory
+        <br>
+        <span><strong>Coverage:</strong> School Year 2021-2022 to 2025-2026</span>
+      </div>
+    </div>
+
+    <div class="footer-right">
+      <div class="footer-icon">
+        <i class="fa-solid fa-calendar-days"></i>
+      </div>
+      <div class="footer-text">
+        <strong>Last Updated</strong><br>
+        <span id="lastUpdated"></span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="page-recommendation" class="page" style="display:none;">
+
+  <!-- MENU BAR -->
+
+<div class="menu-bar">
+
+    <div class="menu-left">
+
+        <button class="menu-toggle" onclick="toggleSidebar()">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <h2>Dashboard Panel</h2>
+
+    </div>
+
+    <div class="menu-right">
+
+        <div class="menu-profile">
+            <img src="logo.png">
+        </div>
+
+    </div>
+
+</div>
+
+  <div class="recommendation-topbar">
+    <div>
+      <h1>Recommendation</h1>
+      <p>Data-driven strategies and actions to improve performance and address key issues</p>
+    </div>
+
+    <div class="school-year">
+      <i class="fa-solid fa-calendar"></i>
+      <select id="recommendationYearSelect">
+        <option value="2021-2022">SY 2021-2022</option>
+        <option value="2022-2023">SY 2022-2023</option>
+        <option value="2023-2024">SY 2023-2024</option>
+        <option value="2024-2025">SY 2024-2025</option>
+        <option value="2025-2026" selected>SY 2025-2026</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="recommendation-cards">
+
+    <div class="recommendation-card">
+      <div class="overview-icon green"><i class="fa-solid fa-circle-check"></i></div>
+      <h3>TOTAL RECOMMENDATIONS</h3>
+      <h1>8</h1>
+      <p>Proposed Actions</p>
+      <small><span class="red-text">High Priority: 3</span> &nbsp; <span class="orange-text">Medium: 3</span> &nbsp; <span class="green-text">Low: 2</span></small>
+    </div>
+
+    <div class="recommendation-card">
+      <div class="overview-icon blue"><i class="fa-solid fa-users"></i></div>
+      <h3>CATEGORIES</h3>
+      <h1>4</h1>
+      <p>Focus Areas</p>
+      <small>Academic • Facilities • Teachers • Community</small>
+    </div>
+
+    <div class="recommendation-card">
+      <div class="overview-icon purple"><i class="fa-solid fa-bullseye"></i></div>
+      <h3>EXPECTED IMPACT</h3>
+      <h1>High</h1>
+      <p>Overall Improvement</p>
+      <small>Better Learning • Efficient Resources</small>
+    </div>
+
+    <div class="recommendation-card">
+      <div class="overview-icon orange"><i class="fa-solid fa-chart-line"></i></div>
+      <h3>IMPLEMENTATION PROGRESS</h3>
+      <h1>0%</h1>
+      <p>Not Started</p>
+      <small>0 / 12 Completed</small>
+    </div>
+
+    <div class="recommendation-card">
+      <div class="overview-icon teal"><i class="fa-solid fa-calendar-days"></i></div>
+      <h3>TARGET COMPLETION</h3>
+      <h1 id="targetCompletion">SY 2026-2027</h1>
+      <p>Implementation Timeline</p>
+      <small>1–2 School Years</small>
+    </div>
+
+  </div>
+
+  <div class="recommendation-grid">
+
+    <div class="recommendation-main">
+
+      <div class="recommendation-panel">
+        <h3>RECOMMENDATIONS OVERVIEW</h3>
+
+        <div class="recommendation-overview-grid">
+
+          <div class="rec-category academic">
+            <div class="rec-cat-head">
+              <i class="fa-solid fa-graduation-cap"></i>
+              <div>
+                <h4>ACADEMIC SUPPORT</h4>
+                <h2>4</h2>
+                <p>Recommendations</p>
+              </div>
+            </div>
+            <ul>
+              <li>Implement Early Literacy Program for Kinder–Grade 1</li>
+              <li>Remedial Program for At-Risk Learners</li>
+            </ul>
+            <span class="priority high">Priority: High</span>
+          </div>
+
+          <div class="rec-category facility">
+            <div class="rec-cat-head">
+              <i class="fa-solid fa-school"></i>
+              <div>
+                <h4>FACILITY IMPROVEMENT</h4>
+                <h2>4</h2>
+                <p>Recommendations</p>
+              </div>
+            </div>
+            <ul>
+              <li>Add 1–2 Classrooms for congested grade levels</li>
+              <li>Optimize Classroom Utilization</li>
+              <li>Maintain and Upgrade Learning Facilities</li>
+            </ul>
+            <span class="priority high">Priority: High</span>
+          </div>
+
+          <div class="rec-category teacher">
+            <div class="rec-cat-head">
+              <i class="fa-solid fa-user"></i>
+              <div>
+                <h4>TEACHER DEVELOPMENT</h4>
+                <h2>2</h2>
+                <p>Recommendations</p>
+              </div>
+            </div>
+            <ul>
+              <li>Provide Training on Differentiated Instruction</li>
+            </ul>
+            <span class="priority medium">Priority: Medium</span>
+          </div>
+
+          <div class="rec-category community">
+            <div class="rec-cat-head">
+              <i class="fa-solid fa-people-group"></i>
+              <div>
+                <h4>COMMUNITY & PARTNERSHIP</h4>
+                <h2>2</h2>
+                <p>Recommendations</p>
+              </div>
+            </div>
+            <ul>
+              <li>Strengthen Parent Engagement Programs</li>
+              <li>Collaborate with Stakeholders for Additional Support</li>
+            </ul>
+            <span class="priority low">Priority: Low</span>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="recommendation-panel">
+        <h3>DETAILED RECOMMENDATIONS</h3>
+
+        <div style="overflow:auto;">
+          <table class="recommendation-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Recommendation</th>
+                <th>Category</th>
+                <th>Priority</th>
+                <th>Rationale</th>
+                <th>Expected Outcome</th>
+                <th>Timeline</th>
+              </tr>
+            </thead>
+            <tbody id="recommendationTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="recommendation-side">
+
+      <div class="recommendation-panel">
+        <h3>ALIGNMENT WITH KEY ISSUES</h3>
+
+        <div class="alignment-card red-align">
+          <i class="fa-solid fa-triangle-exclamation"></i>
+          <div>
+            <h4>High Repeaters in Grade 1</h4>
+            <strong>→ Academic Support</strong>
+            <p>Early intervention and remedial programs help reduce repeaters.</p>
+          </div>
+        </div>
+
+        <div class="alignment-card orange-align">
+          <i class="fa-solid fa-chart-line"></i>
+          <div>
+            <h4>Enrollment Instability</h4>
+            <strong>→ Community & Partnership</strong>
+            <p>Strengthening parent engagement can help stabilize enrollment.</p>
+          </div>
+        </div>
+
+        <div class="alignment-card yellow-align">
+          <i class="fa-solid fa-users"></i>
+          <div>
+            <h4>Classroom Congestion Risk</h4>
+            <strong>→ Facility Improvement</strong>
+            <p>Additional classrooms and optimized utilization reduce congestion.</p>
+          </div>
+        </div>
+
+        <div class="alignment-card purple-align">
+          <i class="fa-solid fa-user"></i>
+          <div>
+            <h4>Teacher Allocation Gap</h4>
+            <strong>→ Teacher Development</strong>
+            <p>Training and proper allocation improve instruction quality.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="recommendation-panel">
+        <h3>EXPECTED OVERALL IMPACT</h3>
+
+        <div class="quick-insight">
+          <i class="fa-solid fa-chart-line green-i"></i>
+          <span>Improved academic performance and reduced repeaters.</span>
+        </div>
+
+        <div class="quick-insight">
+          <i class="fa-solid fa-users orange-i"></i>
+          <span>Better learning environment with adequate classrooms.</span>
+        </div>
+
+        <div class="quick-insight">
+          <i class="fa-solid fa-user purple-i"></i>
+          <span>Stronger teachers with effective instructional strategies.</span>
+        </div>
+
+        <div class="quick-insight">
+          <i class="fa-solid fa-people-group teal-i"></i>
+          <span>Stronger community partnership and stable enrollment.</span>
+        </div>
+
+        <div class="quick-insight">
+          <i class="fa-solid fa-award blue-i"></i>
+          <span>Sustainable improvement in school performance.</span>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="dashboard-footer">
+    <div class="footer-left">
+      <div class="footer-icon">
+        <i class="fa-solid fa-circle-info"></i>
+      </div>
+      <div class="footer-text">
+        <strong>Note:</strong> Recommendations are based on data analysis from Enrollment, Teachers, and Facilities.
+        <br>
+        <span><strong>Coverage:</strong> School Year 2021-2022 to 2025-2026</span>
+      </div>
+    </div>
+
+    <div class="footer-right">
+      <div class="footer-icon">
+        <i class="fa-solid fa-calendar-days"></i>
+      </div>
+      <div class="footer-text">
+        <strong>Last Updated</strong><br>
+        <span id="lastUpdated"></span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="page-reports" class="page" style="display:none;">
+
+  <!-- MENU BAR -->
+
+<div class="menu-bar">
+
+    <div class="menu-left">
+
+        <button class="menu-toggle" onclick="toggleSidebar()">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <h2>Dashboard Panel</h2>
+
+    </div>
+
+    <div class="menu-right">
+
+        <div class="menu-profile">
+            <img src="logo.png">
+        </div>
+
+    </div>
+
+</div>
+
+  <div class="reports-topbar">
+    <div>
+      <h1>Reports</h1>
+      <p>Generate, view, and export reports for key school data and performance</p>
+    </div>
+
+    <div class="school-year">
+      <i class="fa-solid fa-calendar"></i>
+      <select id="reportsYearSelect">
+        <option value="2021-2022">SY 2021-2022</option>
+        <option value="2022-2023">SY 2022-2023</option>
+        <option value="2023-2024">SY 2023-2024</option>
+        <option value="2024-2025">SY 2024-2025</option>
+        <option value="2025-2026" selected>SY 2025-2026</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="report-cards">
+
+    <div class="report-card">
+      <div class="overview-icon blue"><i class="fa-solid fa-file-lines"></i></div>
+      <h3>TOTAL REPORTS</h3>
+      <h1>12</h1>
+      <p>Available Reports</p>
+    </div>
+
+    <div class="report-card">
+      <div class="overview-icon green"><i class="fa-solid fa-download"></i></div>
+      <h3>REPORTS GENERATED</h3>
+      <h1 id="reportsGenerated">18</h1>
+      <p>This School Year</p>
+    </div>
+
+    <div class="report-card">
+      <div class="overview-icon purple"><i class="fa-solid fa-calendar-days"></i></div>
+      <h3>LAST GENERATED</h3>
+      <h1>May 14, 2025</h1>
+      <p>09:25 AM</p>
+    </div>
+
+    <div class="report-card">
+      <div class="overview-icon orange"><i class="fa-solid fa-chart-pie"></i></div>
+      <h3>MOST GENERATED</h3>
+      <h1>Enrollment Report</h1>
+      <p>6 times</p>
+    </div>
+
+  </div>
+
+  <div class="reports-grid">
+
+    <div class="report-panel">
+      <h3>REPORTS BY CATEGORY</h3>
+
+      <div class="report-category-wrap">
+        <div class="report-donut">
+          <div>
+            <h2>12</h2>
+            <p>Total</p>
+          </div>
+        </div>
+
+        <div class="report-legend">
+          <p><span class="dot blue-dot"></span> Enrollment Reports - 4</p>
+          <p><span class="dot teal-dot"></span> Teacher Reports - 3</p>
+          <p><span class="dot purple-dot"></span> Facility Reports - 2</p>
+          <p><span class="dot orange-dot"></span> Performance Reports - 2</p>
+          <p><span class="dot red-dot"></span> Summary Reports - 1</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="report-panel">
+      <h3>RECENTLY GENERATED REPORTS</h3>
+
+      <table class="report-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Report Name</th>
+            <th>Category</th>
+            <th>Generated By</th>
+            <th>Date Generated</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td>Enrollment Summary Report</td><td>Enrollment</td><td>Admin</td><td>May 14, 2025</td></tr>
+          <tr><td>2</td><td>Teachers Summary Report</td><td>Teachers</td><td>Admin</td><td>May 14, 2025</td></tr>
+          <tr><td>3</td><td>Facilities Inventory Report</td><td>Facilities</td><td>Admin</td><td>May 13, 2025</td></tr>
+          <tr><td>4</td><td>Data Overview Report</td><td>Summary</td><td>Admin</td><td>May 13, 2025</td></tr>
+          <tr><td>5</td><td>Key Issues and Causes Report</td><td>Performance</td><td>Admin</td><td>May 12, 2025</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="report-panel">
+      <h3>QUICK ACTIONS</h3>
+
+      <button class="report-action" onclick="generateReportPreview()">
+        <i class="fa-solid fa-file-lines"></i>
+        Generate Custom Report
+      </button>
+
+      <button class="report-action">
+        <i class="fa-solid fa-calendar"></i>
+        Schedule Report
+      </button>
+
+      <button class="report-action">
+        <i class="fa-solid fa-file-excel"></i>
+        Export All Data
+      </button>
+
+      <button class="report-action" onclick="window.print()">
+        <i class="fa-solid fa-print"></i>
+        Print Report
+      </button>
+    </div>
+
+  </div>
+
+  <div class="reports-bottom-grid">
+
+    <div class="report-panel">
+      <h3 id="reportPreviewTitle">REPORT PREVIEW — SY 2025-2026</h3>
+
+      <div class="report-preview-cards">
+        <div>
+          <i class="fa-solid fa-users blue-i"></i>
+          <strong id="repTotalEnrollment">294</strong>
+          <span>Total Enrollment</span>
+        </div>
+
+        <div>
+          <i class="fa-solid fa-mars blue-i"></i>
+          <strong id="repMale">152</strong>
+          <span>Male</span>
+        </div>
+
+        <div>
+          <i class="fa-solid fa-venus red-i"></i>
+          <strong id="repFemale">142</strong>
+          <span>Female</span>
+        </div>
+
+        <div>
+          <i class="fa-solid fa-rotate orange-i"></i>
+          <strong id="repRepeaters">4</strong>
+          <span>Repeaters</span>
+        </div>
+      </div>
+
+      <h4>Enrollment by Grade Level</h4>
+      <table class="report-table">
+        <thead>
+          <tr>
+            <th>Grade Level</th>
+            <th>Enrollment</th>
+          </tr>
+        </thead>
+        <tbody id="reportGradeTable"></tbody>
+      </table>
+    </div>
+
+    <div class="report-panel">
+      <h3>ENROLLMENT TREND</h3>
+      <svg id="reportTrendChart" viewBox="0 0 650 260"></svg>
+    </div>
+
+    <div class="report-panel">
+      <h3>REPORT TEMPLATES</h3>
+
+      <div class="template-item"><i class="fa-solid fa-file-lines blue-i"></i> Enrollment Summary</div>
+      <div class="template-item"><i class="fa-solid fa-user green-i"></i> Teacher Summary</div>
+      <div class="template-item"><i class="fa-solid fa-school purple-i"></i> Facility Inventory</div>
+      <div class="template-item"><i class="fa-solid fa-chart-line orange-i"></i> Performance Overview</div>
+      <div class="template-item"><i class="fa-solid fa-file-circle-plus teal-i"></i> Custom Report</div>
+    </div>
+
+  </div>
+
+  <div class="dashboard-footer">
+    <div class="footer-left">
+      <div class="footer-icon">
+        <i class="fa-solid fa-circle-info"></i>
+      </div>
+      <div class="footer-text">
+        <strong>Reports are based on validated data from the system.</strong>
+        <br>
+        <span>For questions or data correction, please contact the system administrator.</span>
+      </div>
+    </div>
+
+    <div class="footer-right">
+      <div class="footer-icon">
+        <i class="fa-solid fa-calendar-days"></i>
+      </div>
+      <div class="footer-text">
+        <strong>Last Updated</strong><br>
+        <span id="lastUpdated"></span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="page-settings" class="page" style="display:none;">
+
+  <!-- MENU BAR -->
+
+<div class="menu-bar">
+
+    <div class="menu-left">
+
+        <button class="menu-toggle" onclick="toggleSidebar()">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <h2>Dashboard Panel</h2>
+
+    </div>
+
+    <div class="menu-right">
+
+        <div class="menu-profile">
+            <img src="logo.png">
+        </div>
+
+    </div>
+
+</div>
+
+  <div class="settings-topbar">
+    <div>
+      <h1>Settings</h1>
+      <p>Manage system preferences and configurations.</p>
+    </div>
+
+    <div class="settings-actions">
+      <select id="settingsYearSelect">
+        <option>SY 2025-2026</option>
+      </select>
+
+      <button class="save-btn">
+        <i class="fa-solid fa-floppy-disk"></i>
+        Save Changes
+      </button>
+    </div>
+  </div>
+
+  <div class="settings-grid">
+
+    <div class="settings-card">
+      <h3><i class="fa-solid fa-school"></i> School Information</h3>
+
+      <div class="settings-school-wrap">
+        <div class="settings-form">
+
+          <div class="form-group">
+            <label>School Name</label>
+            <input type="text" id="schoolNameInput" value="Cabetican Elementary School">
+          </div>
+
+          <div class="form-group">
+            <label>School ID</label>
+            <input type="text" id="schoolIdInput" value="CES-101">
+          </div>
+
+          <div class="form-group">
+            <label>Address</label>
+            <input type="text" id="schoolAddressInput" value="Cabetican, Bacolor, Pampanga">
+          </div>
+
+          <div class="form-group">
+            <label>Principal</label>
+            <input type="text" id="principalInput" value="Maria Lorena D. Ramos">
+          </div>
+
+        </div>
+
+        <div class="logo-settings">
+          <img src="logo.png" id="schoolLogoPreview">
+
+          <input type="file" id="schoolLogoInput" accept="image/*" hidden>
+
+          <button type="button" class="secondary-btn" id="changeLogoBtn">
+            <i class="fa-solid fa-image"></i>
+            Change Logo
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="settings-card">
+      <h3><i class="fa-solid fa-desktop"></i> System Preferences</h3>
+
+      <div class="settings-form">
+
+        <div class="form-group">
+          <label>Theme</label>
+          <select id="themeSelect">
+            <option>Light</option>
+            <option>Dark</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Language</label>
+          <select id="languageSelect">
+            <option>English</option>
+            <option>Filipino</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Rows Per Page</label>
+          <select id="rowsSelect">
+            <option>10 Rows</option>
+            <option>20 Rows</option>
+            <option>50 Rows</option>
+          </select>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="settings-card">
+      <h3><i class="fa-solid fa-shield-halved"></i> Security Settings</h3>
+
+      <div class="settings-form">
+
+        <div class="form-group">
+          <label>Session Timeout</label>
+          <select id="timeoutSelect">
+            <option>15 Minutes</option>
+            <option>30 Minutes</option>
+            <option>1 Hour</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Login Attempt Limit</label>
+          <select id="loginLimitSelect">
+            <option>3 Attempts</option>
+            <option>5 Attempts</option>
+            <option>10 Attempts</option>
+          </select>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="settings-card">
+      <h3><i class="fa-solid fa-database"></i> Backup & Restore</h3>
+
+      <div class="backup-actions">
+        <button class="primary-btn" type="button">
+          <i class="fa-solid fa-cloud-arrow-up"></i>
+          Backup Now
+        </button>
+
+        <button class="secondary-btn" type="button" id="restoreBtn">
+          <i class="fa-solid fa-rotate-left"></i>
+          Restore Backup
+        </button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+    </div>
+</body>
+</html>
